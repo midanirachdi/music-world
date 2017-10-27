@@ -1,9 +1,11 @@
 package services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
 
+import entities.BookingDetail;
 import entities.Course;
 import entities.User;
 
@@ -14,4 +16,6 @@ public interface BasicOpsServiceLocal {
 	void saveOrUpdateCourse(Course course);
 
 	List<Course> findAllCourses();
+
+	BookingDetail findBookingDetailById(User user, Course course, Date date);
 }

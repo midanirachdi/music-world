@@ -1,9 +1,14 @@
 package services;
 
+import java.util.Date;
+
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import entities.BookingDetail;
+import entities.BookingStatus;
 import entities.Course;
 import entities.User;
 
@@ -15,22 +20,36 @@ public class SubscriptionService implements SubscriptionServiceRemote, Subscript
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	@EJB
+	private BasicOpsServiceLocal basicOpsServiceLocal;
+
 	/**
 	 * Default constructor.
 	 */
 	public SubscriptionService() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void assignCourseToTeacher(Course course, User teacher) {
-		// TODO Auto-generated method stub
+		course.setTeacher(teacher);
+
+		basicOpsServiceLocal.saveOrUpdateCourse(course);
 
 	}
 
 	@Override
 	public void bookForCourse(User student, Course course) {
-		// TODO Auto-generated method stub
+		BookingDetail bookingDetail = new BookingDetail(student, course);
+
+		entityManager.merge(bookingDetail);
+	}
+
+	@Override
+	public void treatBookingRequest(User user, Course course, Date dateOfTheBooking, BookingStatus status) {
+		BookingDetail bookingDetail = basicOpsServiceLocal.findBookingDetailById(user, course, dateOfTheBooking);
+		bookingDetail.setBookingStatus(status);
+
+		entityManager.merge(bookingDetail);
 
 	}
 

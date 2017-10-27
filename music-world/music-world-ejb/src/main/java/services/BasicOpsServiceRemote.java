@@ -11,8 +11,14 @@ import entities.User;
 public interface BasicOpsServiceRemote {
 	void saveOrUpdateUser(User user);
 
+	User findUserById(int id);
+
 	void saveOrUpdateCourse(Course course);
 
 	List<Course> findAllCourses();
+
+	List<Course> findAllCoursesByTeacher(User teacher);
+
+	Course findCourseById(int id);
 
 }
