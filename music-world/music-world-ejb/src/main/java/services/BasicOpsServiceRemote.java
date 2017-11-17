@@ -20,5 +20,6 @@ public interface BasicOpsServiceRemote {
 	List<Course> findAllCoursesByTeacher(User teacher);
 
 	Course findCourseById(int id);
+	User getUserByLogin(String login,String pw);
 
 }

@@ -37,6 +37,8 @@ public class AppUtilities {
 	@PostConstruct
 	public void initDb() {
 		Student student = new Student("maissen", "123MT");
+		student.setLogin("m");
+		student.setPassword("m");
 		Student student2 = new Student("hamma", "124MT");
 		Student student3 = new Student("olfa", "178FT");
 

@@ -27,6 +27,10 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy = "student")
 	private List<BookingDetail> bookingDetails;
+	
+	private String login;
+	private String password;
+	
 
 	private static final long serialVersionUID = 1L;
 
@@ -69,6 +73,22 @@ public class User implements Serializable {
 
 	public void setBookingDetails(List<BookingDetail> bookingDetails) {
 		this.bookingDetails = bookingDetails;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

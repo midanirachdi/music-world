@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/template/template.xhtml">
+
+	<h:head></h:head>
+	<body>
+		<ui:define name="content">
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputText value="name" />
+					<h:inputText value="#{userManagementBean.name}" />
+					<h:outputText value="login" />
+					<h:inputText value="#{userManagementBean.login}" />
+					<h:outputText value="password" />
+					<h:inputText value="#{userManagementBean.password}" />
+					<h:commandButton action="#{userManagementBean.doAddUser()}"
+						value="Add user" />
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</body>
+</ui:composition>

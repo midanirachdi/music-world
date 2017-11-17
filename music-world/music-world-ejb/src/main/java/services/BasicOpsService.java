@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -65,6 +66,24 @@ public class BasicOpsService implements BasicOpsServiceRemote, BasicOpsServiceLo
 	@Override
 	public BookingDetail findBookingDetailById(User user, Course course, Date date) {
 		return entityManager.find(BookingDetail.class, new BookingDetailId(course.getId(), user.getId(), date));
+	}
+
+	@Override
+	public User getUserByLogin(String login, String pw) {
+		
+		User u =null;
+		String jpql="Select u from User u where u.login=:l and u.password=:p";
+		try{
+		u = entityManager.createQuery(jpql, User.class)
+				.setParameter("l", login)
+				.setParameter("p", pw)
+				.getSingleResult();
+		}
+		catch (NoResultException e){
+			System.out.println("utilisateur introuvable");
+		}
+		return u;
+		
 	}
 
 }

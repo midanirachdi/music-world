@@ -18,4 +18,5 @@ public interface BasicOpsServiceLocal {
 	List<Course> findAllCourses();
 
 	BookingDetail findBookingDetailById(User user, Course course, Date date);
+	User getUserByLogin(String login,String pw);
 }
